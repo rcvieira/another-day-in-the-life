@@ -1,0 +1,111 @@
+.game {
+  width: 600px;
+  height: 200px;
+  border: 0px solid black;
+  margin: auto;
+  background-color: white;
+  overflow: hidden;
+}
+
+.pause-game {
+  animation-play-state: paused;
+}
+
+#landscape1 {
+  position: relative;
+  width: 1800px;
+  height: 200px;
+  top: 0px;
+  left: 0px;
+  background-image: url(img/landscape-primeiro-plano.png);
+}
+
+.landscape-start {
+  animation: land 6s infinite linear;
+}
+
+@keyframes land {
+  0% {
+    left: 0px;
+  }
+
+  100% {
+    left: -1200px;
+  }
+}
+
+#man {
+  width: 50px;
+  height: 50px;
+  background-image: url(img/stickman1.png);
+  background-size: 50px 50px;
+  position: absolute;
+  top: 155px;
+}
+
+.walk {
+  animation: walk 0.5s infinite linear;
+}
+
+.jump {
+  animation: jump 0.5s linear;
+}
+
+@keyframes jump {
+  0% {
+    top: 150px;
+  }
+
+  25% {
+    top: 90px;
+  }
+
+  50% {
+    top: 40px;
+  }
+
+  75% {
+    top: 90px;
+  }
+
+  100% {
+    top: 150px;
+  }
+}
+
+#shit {
+  width: 25px;
+  height: 25px;
+  position: relative;
+  top: -25px;
+  left: 560px;
+
+  background-image: url("img/dogshit.webp");
+  background-size: 25px 25px;
+}
+
+.shit-start {
+  animation: block 3s infinite linear;
+}
+
+@keyframes block {
+  0% {
+    left: 580px;
+  }
+
+  100% {
+    left: -20px;
+  }
+}
+
+@keyframes walk {
+  0% {
+    background-image: url(img/stickman1.png);
+  }
+  50% {
+    background-image: url(img/stickman2.png);
+  }
+  100% {
+    background-image: url(img/stickman1.png);
+  }
+}
