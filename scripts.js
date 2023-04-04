@@ -35,8 +35,6 @@ function jump() {
   }
 }
 
-function donothing() {}
-
 function updateLifeDiv() {
   let lifeTotal = lifeCount * 25;
   life.style.width = "" + lifeTotal + "px";
@@ -61,8 +59,6 @@ let isAlive = setInterval(function () {
     // collision
     obstacleCollision = true;
     if (lifeCount > 0) {
-      // Timeout to avoid detecting multiple collisions in the same obstacle.
-      // setTimeout(donothing, 50);
       lifeCount = lifeCount - 1;
       updateLifeDiv();
     }
