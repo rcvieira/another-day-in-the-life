@@ -11,11 +11,21 @@
   animation-play-state: paused;
 }
 
+#life {
+  position: relative;
+  top: 0px;
+  left: 0px;
+  width: 125px;
+  height: 25px;
+  background-image: url(img/heart.png);
+  background-size: 25px 25px;
+}
+
 #landscape1 {
   position: relative;
   width: 1800px;
   height: 200px;
-  top: 0px;
+  top: -25px;
   left: 0px;
   background-image: url(img/landscape-primeiro-plano.png);
 }
@@ -77,7 +87,7 @@
   width: 25px;
   height: 25px;
   position: relative;
-  top: -25px;
+  top: -50px;
   left: 560px;
 
   background-image: url("img/dogshit.webp");
@@ -108,4 +118,18 @@
   100% {
     background-image: url(img/stickman1.png);
   }
+}
+
+#status {
+  position: relative;
+  top: -200px;
+  left: 250px;
+  padding: 10px;
+  width: fit-content;
+  font-family: monospace;
+  border: 2px dashed black;
+}
+
+.hidden {
+  visibility: hidden;
 }
