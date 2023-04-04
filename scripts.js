@@ -35,24 +35,29 @@ function jump() {
   }
 }
 
-function updateLifeDiv() {
+function updateLife() {
   let lifeTotal = lifeCount * 25;
   life.style.width = "" + lifeTotal + "px";
 }
 
 let isAlive = setInterval(function () {
-  // get current dino Y position
+  // get current man Y position
   let manTop = parseInt(window.getComputedStyle(man).getPropertyValue("top"));
 
-  // get current cactus X position
+  // get current obstacle X position
   let obstacleLeft = parseInt(
     window.getComputedStyle(obstacle).getPropertyValue("left")
+  );
+
+  // get obstacle size
+  let obstacleSize = parseInt(
+    window.getComputedStyle(obstacle).getPropertyValue("width")
   );
 
   // detect collision
   if (
     obstacleLeft < 25 &&
-    obstacleLeft > 0 &&
+    obstacleLeft > 25 - obstacleSize &&
     manTop >= 150 &&
     !obstacleCollision
   ) {
@@ -60,10 +65,8 @@ let isAlive = setInterval(function () {
     obstacleCollision = true;
     if (lifeCount > 0) {
       lifeCount = lifeCount - 1;
-      updateLifeDiv();
-    }
-
-    if (lifeCount <= 0) {
+      updateLife();
+    } else if (lifeCount <= 0) {
       gameStatus.classList.remove("hidden");
       landscape1.classList.remove("landscape-start");
       obstacle.classList.remove(obstacleStartClassName);
@@ -71,7 +74,10 @@ let isAlive = setInterval(function () {
       gameState = "gameover";
     }
     // detect obstacle went out of screen
-  } else if (obstacleLeft < -10 && obstacleLeft >= -25) {
+  } else if (
+    obstacleLeft < 25 - obstacleSize - 10 &&
+    obstacleLeft >= 25 - obstacleSize - 25
+  ) {
     changeObstacle();
     obstacleCollision = false;
   }
@@ -81,7 +87,7 @@ let isAlive = setInterval(function () {
     let newDistance = distance + 10;
     score.textContent = "" + newDistance;
   }
-}, 100);
+}, 50);
 
 function changeObstacle() {
   let idx = parseInt(Math.random() * 100) % obstacles.length;
@@ -100,7 +106,7 @@ document.addEventListener("keydown", function (event) {
       man.classList.add("walk");
       score.textContent = "0";
       lifeCount = 5;
-      updateLifeDiv();
+      updateLife();
       gameState = "started";
     } else {
       jump();
