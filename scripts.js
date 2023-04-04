@@ -20,13 +20,16 @@ const score = document.getElementById("score");
 
 let gameState = "paused";
 let lifeCount = 5;
-let obstacleStartClassName = "dogshit-start";
+let obstacleName = "dogshit";
+let obstacleStartClassName = obstacleName + "-start";
 let obstacleCollision = false;
 
 function jump() {
   if (man.classList != "jump") {
     man.classList.remove("walk");
     man.classList.add("jump");
+    const jumpSound = new Audio("./audio/jump.m4a");
+    jumpSound.play();
 
     setTimeout(function () {
       man.classList.remove("jump");
@@ -66,6 +69,8 @@ let isAlive = setInterval(function () {
   ) {
     obstacleCollision = true;
     if (lifeCount > 0) {
+      let obstacleSound = new Audio("audio/" + obstacleName + ".m4a");
+      obstacleSound.play();
       lifeCount = lifeCount - 1;
       updateLifeReading();
     }
@@ -87,8 +92,8 @@ let isAlive = setInterval(function () {
 
 function stopGame() {
   gameStatus.classList.remove("hidden");
-  landscape1.classList.remove("landscape-start");
-  obstacle.classList.remove(obstacleStartClassName);
+  landscape1.style.animationPlayState = "paused";
+  obstacle.style.animationPlayState = "paused";
   man.classList.remove("walk");
   gameState = "gameover";
 }
@@ -97,6 +102,7 @@ function changeObstacle() {
   let idx = parseInt(Math.random() * 100) % obstacles.length;
   obstacle.className = "";
   obstacle.classList.add(obstacles[idx]);
+  obstacleName = obstacles[idx];
   obstacleStartClassName = obstacles[idx] + "-start";
   obstacle.classList.add(obstacleStartClassName);
 }
@@ -107,6 +113,8 @@ document.addEventListener("keydown", function (event) {
       gameStatus.classList.add("hidden");
       landscape1.classList.add("landscape-start");
       obstacle.classList.add(obstacleStartClassName);
+      landscape1.style.animationPlayState = "running";
+      obstacle.style.animationPlayState = "running";
       man.classList.add("walk");
       score.textContent = "0";
       lifeCount = 5;
