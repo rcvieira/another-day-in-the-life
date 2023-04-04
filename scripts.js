@@ -66,7 +66,9 @@ let isAlive = setInterval(function () {
     if (lifeCount > 0) {
       lifeCount = lifeCount - 1;
       updateLife();
-    } else if (lifeCount <= 0) {
+    }
+
+    if (lifeCount <= 0) {
       gameStatus.classList.remove("hidden");
       landscape1.classList.remove("landscape-start");
       obstacle.classList.remove(obstacleStartClassName);

@@ -42,7 +42,7 @@
 }
 
 .landscape-start {
-  animation: land 6s infinite linear;
+  animation: land 6000ms infinite linear;
 }
 
 @keyframes land {
@@ -65,11 +65,11 @@
 }
 
 .walk {
-  animation: walk 0.5s infinite linear;
+  animation: walk 500ms infinite linear;
 }
 
 .jump {
-  animation: jump 0.5s linear;
+  animation: jump 500ms linear;
 }
 
 @keyframes jump {
@@ -78,15 +78,15 @@
   }
 
   25% {
-    top: 90px;
+    top: 65px;
   }
 
-  50% {
-    top: 40px;
+  40% {
+    top: 50px;
   }
 
-  75% {
-    top: 90px;
+  65% {
+    top: 60px;
   }
 
   100% {
@@ -132,15 +132,15 @@
 }
 
 .hole-start {
-  animation: holeAnimation 3s infinite linear;
+  animation: holeAnimation 3000ms infinite linear;
 }
 
 .dogshit-start {
-  animation: dogshitAnimation 3s infinite linear;
+  animation: dogshitAnimation 3000ms infinite linear;
 }
 
 .trash-start {
-  animation: trashAnimation 3s infinite linear;
+  animation: trashAnimation 3000ms infinite linear;
 }
 
 @keyframes holeAnimation {
