@@ -35,51 +35,45 @@ function jump() {
   }
 }
 
-function updateLife() {
+function updateLifeReading() {
   let lifeTotal = lifeCount * 25;
   life.style.width = "" + lifeTotal + "px";
 }
 
-let isAlive = setInterval(function () {
-  // get current man Y position
-  let manTop = parseInt(window.getComputedStyle(man).getPropertyValue("top"));
+function detectCollision(obstacleLeft, obstacleSize, manTop) {
+  return obstacleLeft < 25 && obstacleLeft > 25 - obstacleSize && manTop >= 150;
+}
 
-  // get current obstacle X position
+function detectLeftOfScreen(obstacleLeft, obstacleSize) {
+  return (
+    obstacleLeft < 25 - obstacleSize - 10 &&
+    obstacleLeft >= 25 - obstacleSize - 25
+  );
+}
+
+let isAlive = setInterval(function () {
+  let manTop = parseInt(window.getComputedStyle(man).getPropertyValue("top"));
   let obstacleLeft = parseInt(
     window.getComputedStyle(obstacle).getPropertyValue("left")
   );
-
-  // get obstacle size
   let obstacleSize = parseInt(
     window.getComputedStyle(obstacle).getPropertyValue("width")
   );
 
-  // detect collision
   if (
-    obstacleLeft < 25 &&
-    obstacleLeft > 25 - obstacleSize &&
-    manTop >= 150 &&
+    detectCollision(obstacleLeft, obstacleSize, manTop) &&
     !obstacleCollision
   ) {
-    // collision
     obstacleCollision = true;
     if (lifeCount > 0) {
       lifeCount = lifeCount - 1;
-      updateLife();
+      updateLifeReading();
     }
 
     if (lifeCount <= 0) {
-      gameStatus.classList.remove("hidden");
-      landscape1.classList.remove("landscape-start");
-      obstacle.classList.remove(obstacleStartClassName);
-      man.classList.remove("walk");
-      gameState = "gameover";
+      stopGame();
     }
-    // detect obstacle went out of screen
-  } else if (
-    obstacleLeft < 25 - obstacleSize - 10 &&
-    obstacleLeft >= 25 - obstacleSize - 25
-  ) {
+  } else if (detectLeftOfScreen(obstacleLeft, obstacleSize)) {
     changeObstacle();
     obstacleCollision = false;
   }
@@ -89,7 +83,15 @@ let isAlive = setInterval(function () {
     let newDistance = distance + 10;
     score.textContent = "" + newDistance;
   }
-}, 50);
+}, 40);
+
+function stopGame() {
+  gameStatus.classList.remove("hidden");
+  landscape1.classList.remove("landscape-start");
+  obstacle.classList.remove(obstacleStartClassName);
+  man.classList.remove("walk");
+  gameState = "gameover";
+}
 
 function changeObstacle() {
   let idx = parseInt(Math.random() * 100) % obstacles.length;
@@ -108,7 +110,7 @@ document.addEventListener("keydown", function (event) {
       man.classList.add("walk");
       score.textContent = "0";
       lifeCount = 5;
-      updateLife();
+      updateLifeReading();
       gameState = "started";
     } else {
       jump();
