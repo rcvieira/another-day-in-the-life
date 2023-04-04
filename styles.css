@@ -11,21 +11,32 @@
   animation-play-state: paused;
 }
 
+#headerContainer {
+  border: 0px solid black;
+}
+
 #life {
-  position: relative;
-  top: 0px;
-  left: 0px;
+  width: 50%;
+  float: left;
   width: 125px;
   height: 25px;
   background-image: url(img/heart.png);
   background-size: 25px 25px;
 }
 
+#score {
+  width: 50%;
+  float: right;
+  text-align: right;
+  width: 125px;
+  height: 25px;
+}
+
 #landscape1 {
   position: relative;
   width: 1800px;
   height: 200px;
-  top: -25px;
+  top: 0px;
   left: 0px;
   background-image: url(img/landscape-primeiro-plano.png);
 }
@@ -87,7 +98,7 @@
   width: 25px;
   height: 25px;
   position: relative;
-  top: -50px;
+  top: -25px;
   left: 560px;
 
   background-image: url("img/dogshit.webp");

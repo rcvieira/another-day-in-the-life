@@ -3,6 +3,7 @@ const shit = document.getElementById("shit");
 const landscape1 = document.getElementById("landscape1");
 const life = document.getElementById("life");
 const gameStatus = document.getElementById("status");
+const score = document.getElementById("score");
 
 let gameState = "paused";
 let lifeCount = 5;
@@ -39,6 +40,7 @@ let isAlive = setInterval(function () {
   if (shitLeft < 25 && shitLeft > 0 && manTop >= 150) {
     // collision
     if (lifeCount > 0) {
+      // Timeout to avoid detecting multiple collisions in the same obstacle.
       setTimeout(donothing, 50);
       lifeCount = lifeCount - 1;
       updateLifeDiv();
@@ -52,6 +54,12 @@ let isAlive = setInterval(function () {
       gameState = "gameover";
     }
   }
+
+  if (gameState === "started") {
+    let distance = parseInt(score.textContent);
+    let newDistance = distance + 10;
+    score.textContent = "" + newDistance;
+  }
 }, 100);
 
 document.addEventListener("keydown", function (event) {
@@ -61,6 +69,7 @@ document.addEventListener("keydown", function (event) {
       landscape1.classList.add("landscape-start");
       shit.classList.add("shit-start");
       man.classList.add("walk");
+      score.textContent = "0";
       lifeCount = 5;
       updateLifeDiv();
       gameState = "started";
