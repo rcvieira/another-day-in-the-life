@@ -17,8 +17,9 @@ const landscape1 = document.getElementById("landscape1");
 const life = document.getElementById("life");
 const gameStatus = document.getElementById("status");
 const score = document.getElementById("score");
+const cover = document.getElementById("cover");
 
-let gameState = "paused";
+let gameState = "initial";
 let lifeCount = 5;
 let obstacleName = "dogshit";
 let obstacleStartClassName = obstacleName + "-start";
@@ -109,7 +110,8 @@ function changeObstacle() {
 
 document.addEventListener("keydown", function (event) {
   if (event.code === "Space") {
-    if (gameState === "paused" || gameState === "gameover") {
+    if (gameState == "initial") {
+      cover.classList.add("hidden");
       gameStatus.classList.add("hidden");
       landscape1.classList.add("landscape-start");
       obstacle.classList.add(obstacleStartClassName);
@@ -120,6 +122,10 @@ document.addEventListener("keydown", function (event) {
       lifeCount = 5;
       updateLifeReading();
       gameState = "started";
+    } else if (gameState === "gameover") {
+      cover.classList.remove("hidden");
+      gameStatus.classList.add("hidden");
+      gameState = "initial";
     } else {
       jump();
     }

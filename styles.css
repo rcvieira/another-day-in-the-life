@@ -11,10 +11,6 @@
   animation-play-state: paused;
 }
 
-#headerContainer {
-  border: 0px solid black;
-}
-
 #life {
   width: 50%;
   float: left;
@@ -185,13 +181,47 @@
   }
 }
 
-#status {
-  position: relative;
-  top: -200px;
-  left: 250px;
+#cover {
+  position: absolute;
+  margin: 25px;
+}
+
+#name {
+  float: left;
+  width: 50%;
+  top: -180px;
+  margin-top: 10px;
   padding: 10px;
   width: fit-content;
   font-family: monospace;
+  font-size: large;
+  font-weight: bold;
+  border: 2px dashed black;
+
+  transform: rotate(-15deg);
+}
+
+#instructions {
+  float: left;
+  width: 50%;
+  top: -180px;
+  margin-left: 90px;
+  padding: 10px;
+  width: fit-content;
+  font-family: monospace;
+  font-size: medium;
+  font-weight: bold;
+  border: 2px dashed black;
+}
+
+#status {
+  position: relative;
+  top: -200px;
+  margin: auto;
+  padding: 10px;
+  width: fit-content;
+  font-family: monospace;
+  font-size: xxx-large;
   border: 2px dashed black;
 }
 
