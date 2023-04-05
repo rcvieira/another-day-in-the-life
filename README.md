@@ -1,4 +1,4 @@
-# A Day in the Life Game
+# Another Day in the Life Game
 
 The idea for this game came from by my daily walks around my hometown. It began as a form of protest against dog owners that do not pick up their dog's shit, but it eventually evolved to include other issues in the city, such as trash in the streets and potholes on the sidewalks.
 
