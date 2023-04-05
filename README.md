@@ -11,8 +11,8 @@ I didn't remeber myself coding a game before. That way I wanted to build somethi
 1. Watched this [video](https://www.youtube.com/watch?v=i7nIutSLvdU)
 1. Got the starting [code](https://github.com/mdbootstrap/knowledge-base/tree/main/JS/games/dino-game)
 1. Iterate on
-   . game mechanics (actions)
-   . more than one obstacle
-   . sounds
-   . game over
-   . start screen
+   + game mechanics (actions)
+   + more than one obstacle
+   + sounds
+   + game over
+   + start screen
