@@ -24,6 +24,9 @@ let lifeCount = 5;
 let obstacleName = "dogshit";
 let obstacleStartClassName = obstacleName + "-start";
 let obstacleCollision = false;
+let animationDuration = 6000;
+let animationDurationStep = 250;
+let nextAnimationChange = 1000;
 
 function jump() {
   if (man.classList != "jump") {
@@ -82,6 +85,22 @@ let isAlive = setInterval(function () {
   } else if (detectLeftOfScreen(obstacleLeft, obstacleSize)) {
     changeObstacle();
     obstacleCollision = false;
+
+    let distance = parseInt(score.textContent);
+    let newDistance = distance + 10;
+    if (newDistance > nextAnimationChange && animationDuration > 2000) {
+      nextAnimationChange += 1000;
+      animationDuration = animationDuration - animationDurationStep;
+      let animationDurationHalf = parseInt(animationDuration / 2);
+      document.documentElement.style.setProperty(
+        "--animation-duration",
+        animationDuration + "ms"
+      );
+      document.documentElement.style.setProperty(
+        "--animation-duration-half",
+        animationDurationHalf + "ms"
+      );
+    }
   }
 
   if (gameState === "started") {

@@ -1,3 +1,8 @@
+:root {
+  --animation-duration: 6000ms;
+  --animation-duration-half: 3000ms;
+}
+
 .game {
   width: 600px;
   height: 200px;
@@ -38,7 +43,8 @@
 }
 
 .landscape-start {
-  animation: land 6000ms infinite linear;
+  animation: land infinite linear;
+  animation-duration: var(--animation-duration);
 }
 
 @keyframes land {
@@ -128,15 +134,18 @@
 }
 
 .hole-start {
-  animation: holeAnimation 3000ms infinite linear;
+  animation: holeAnimation infinite linear;
+  animation-duration: var(--animation-duration-half);
 }
 
 .dogshit-start {
-  animation: dogshitAnimation 3000ms infinite linear;
+  animation: dogshitAnimation infinite linear;
+  animation-duration: var(--animation-duration-half);
 }
 
 .trash-start {
-  animation: trashAnimation 3000ms infinite linear;
+  animation: trashAnimation infinite linear;
+  animation-duration: var(--animation-duration-half);
 }
 
 @keyframes holeAnimation {
