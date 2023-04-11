@@ -85,18 +85,14 @@ let isAlive = setInterval(function () {
   }
 
   if (gameState === "started") {
-    let distance = parseInt(score.textContent);
-    let newDistance = distance + 10;
-    score.textContent = "" + newDistance;
+    computeScore();
   }
-}, 40);
+}, 10);
 
-function stopGame() {
-  gameStatus.classList.remove("hidden");
-  landscape1.style.animationPlayState = "paused";
-  obstacle.style.animationPlayState = "paused";
-  man.classList.remove("walk");
-  gameState = "gameover";
+function computeScore() {
+  let distance = parseInt(score.textContent);
+  let newDistance = distance + 10;
+  score.textContent = "" + newDistance;
 }
 
 function changeObstacle() {
@@ -116,22 +112,38 @@ document.addEventListener("keydown", function (event) {
 
 function processActionEvent() {
   if (gameState == "initial") {
-    cover.classList.add("hidden");
-    gameStatus.classList.add("hidden");
-    landscape1.classList.add("landscape-start");
-    obstacle.classList.add(obstacleStartClassName);
-    landscape1.style.animationPlayState = "running";
-    obstacle.style.animationPlayState = "running";
-    man.classList.add("walk");
-    score.textContent = "0";
-    lifeCount = 5;
-    updateLifeReading();
-    gameState = "started";
+    startGame();
   } else if (gameState === "gameover") {
-    cover.classList.remove("hidden");
-    gameStatus.classList.add("hidden");
-    gameState = "initial";
+    showStartScreen();
   } else {
     jump();
   }
+}
+
+function showStartScreen() {
+  cover.classList.remove("hidden");
+  gameStatus.classList.add("hidden");
+  gameState = "initial";
+}
+
+function startGame() {
+  cover.classList.add("hidden");
+  gameStatus.classList.add("hidden");
+  landscape1.classList.add("landscape-start");
+  obstacle.classList.add(obstacleStartClassName);
+  landscape1.style.animationPlayState = "running";
+  obstacle.style.animationPlayState = "running";
+  man.classList.add("walk");
+  score.textContent = "0";
+  lifeCount = 5;
+  updateLifeReading();
+  gameState = "started";
+}
+
+function stopGame() {
+  gameStatus.classList.remove("hidden");
+  landscape1.style.animationPlayState = "paused";
+  obstacle.style.animationPlayState = "paused";
+  man.classList.remove("walk");
+  gameState = "gameover";
 }
