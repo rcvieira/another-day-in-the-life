@@ -43,8 +43,8 @@
 }
 
 .landscape-start {
-  animation: land infinite linear;
-  animation-duration: var(--animation-duration);
+  animation: land 6000ms infinite linear;
+  /* animation-duration: var(--animation-duration); */
 }
 
 @keyframes land {

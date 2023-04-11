@@ -91,11 +91,13 @@ let isAlive = setInterval(function () {
     if (newDistance > nextAnimationChange && animationDuration > 2000) {
       nextAnimationChange += 1000;
       animationDuration = animationDuration - animationDurationStep;
+      console.log("setting new duration to " + animationDuration);
       let animationDurationHalf = parseInt(animationDuration / 2);
-      document.documentElement.style.setProperty(
-        "--animation-duration",
-        animationDuration + "ms"
-      );
+      // document.documentElement.style.setProperty(
+      //   "--animation-duration",
+      //   animationDuration + "ms"
+      // );
+      changeAnimationDuration(landscape1, animationDuration);
       document.documentElement.style.setProperty(
         "--animation-duration-half",
         animationDurationHalf + "ms"
@@ -109,6 +111,30 @@ let isAlive = setInterval(function () {
     score.textContent = "" + newDistance;
   }
 }, 40);
+
+function changeAnimationDuration(element, duration) {
+  // var animation = element.style.animation;
+  var animation = window
+    .getComputedStyle(element)
+    .getPropertyValue("animation");
+  console.log("animation", animation);
+
+  element.style.animationPlayState = "paused";
+  var left = window.getComputedStyle(element).getPropertyValue("left");
+  var currentPosition = parseFloat(left) || 0;
+  var animationDurationNow = parseFloat(animation.match(/(\d+)s/)[1]);
+  var animationDelay = 0;
+  var timeElapsed =
+    animationDuration - animationDurationNow * 1000 - animationDelay;
+  var percentageComplete = timeElapsed / animationDuration;
+  var newTimeElapsed = percentageComplete * duration;
+  var newPosition =
+    currentPosition -
+    (currentPosition + 1200) * (newTimeElapsed / animationDurationNow);
+  element.style.animation = `land ${duration}ms infinite linear`;
+  animationDuration = duration;
+  element.style.left = newPosition + "px";
+}
 
 function stopGame() {
   gameStatus.classList.remove("hidden");
