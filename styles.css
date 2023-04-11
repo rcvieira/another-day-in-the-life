@@ -212,6 +212,7 @@
   font-size: medium;
   font-weight: bold;
   border: 2px dashed black;
+  text-align: center;
 }
 
 #status {
