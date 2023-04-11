@@ -110,24 +110,28 @@ function changeObstacle() {
 
 document.addEventListener("keydown", function (event) {
   if (event.code === "Space") {
-    if (gameState == "initial") {
-      cover.classList.add("hidden");
-      gameStatus.classList.add("hidden");
-      landscape1.classList.add("landscape-start");
-      obstacle.classList.add(obstacleStartClassName);
-      landscape1.style.animationPlayState = "running";
-      obstacle.style.animationPlayState = "running";
-      man.classList.add("walk");
-      score.textContent = "0";
-      lifeCount = 5;
-      updateLifeReading();
-      gameState = "started";
-    } else if (gameState === "gameover") {
-      cover.classList.remove("hidden");
-      gameStatus.classList.add("hidden");
-      gameState = "initial";
-    } else {
-      jump();
-    }
+    processActionEvent();
   }
 });
+
+function processActionEvent() {
+  if (gameState == "initial") {
+    cover.classList.add("hidden");
+    gameStatus.classList.add("hidden");
+    landscape1.classList.add("landscape-start");
+    obstacle.classList.add(obstacleStartClassName);
+    landscape1.style.animationPlayState = "running";
+    obstacle.style.animationPlayState = "running";
+    man.classList.add("walk");
+    score.textContent = "0";
+    lifeCount = 5;
+    updateLifeReading();
+    gameState = "started";
+  } else if (gameState === "gameover") {
+    cover.classList.remove("hidden");
+    gameStatus.classList.add("hidden");
+    gameState = "initial";
+  } else {
+    jump();
+  }
+}
